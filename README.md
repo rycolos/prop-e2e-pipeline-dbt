@@ -1,7 +1,9 @@
-# **prop-e2e-pipeline**
+# **prop-e2e-pipeline-dbt**
 
 ## Objective
-As an amateur radio operator, I am frequently experimenting with antennas and new communication modes. I would like to begin quantifying these experiments to analyze how different variables affect my signal propagation. This project serves a dual purpose of assisting in my continued learning about data and analytics engineering.
+This is an expansion of my [prop-e2e-pipeline project](https://github.com/rycolos/prop-e2e-pipeline), with the addition of [dbt](https://getdbt.com/) for transformation.
+
+As an amateur radio operator, I am frequently experimenting with antennas and new communication modes. I would like to begin quantifying these experiments to analyze how different variables affect my signal propagation. This project serves a dual purpose of assisting in my continued learning about data and analytics engineering. 
 
 ## High-level data flow
 <img src="https://i.imgur.com/RBmN2Y7.png" width="800">
