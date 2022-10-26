@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: psk
+    description: A clone of a Postgres application database.
+    database: raw
+    schema: raw
+    tables:
+      - name: psk
+        description: Raw customers data.
+
+  - name: logbook
+    description: A clone of a Postgres application database.
+    database: raw
+    schema: raw
+    tables:
+      - name: logbook
+        description: Raw customers data.
