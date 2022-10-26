@@ -6,7 +6,7 @@
     select
         "sNR" as snr,
         mode as comm_mode,
-        frequency,
+        "MHz" as frequency,
         "rxTime" as rxtime_utc,
         "senderCallsign" as sender_callsign,
         "senderLocator" as sender_locator,
