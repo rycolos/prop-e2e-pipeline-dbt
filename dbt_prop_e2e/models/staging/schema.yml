@@ -10,7 +10,7 @@ sources:
         description: "test"
 
   - name: logbook
-    description: 
+    description: "test"
     database: prop-e2e-dbt
     schema: raw
     tables:
