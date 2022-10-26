@@ -2,16 +2,22 @@
     select * from {{ source('raw', 'psk') }}
  ),
 
+--  transformed as (
+--     select
+--         sNR,
+--         mode as comm_mode,
+--         frequency,
+--         rxtime as rxtime_utc,
+--         senderCallsign as sender_callsign,
+--         senderLocator as sender_locator,
+--         receiverCallsign as receiver_callsign,
+--         receiverLocator as receiver_locator
+--     from source
+--  )
+
  transformed as (
     select
-        sNR as snr,
-        mode as comm_mode,
-        frequency,
-        rxtime as rxtime_utc,
-        senderCallsign as sender_callsign,
-        senderLocator as sender_locator,
-        receiverCallsign as receiver_callsign,
-        receiverLocator as receiver_locator
+      *
     from source
  )
 
