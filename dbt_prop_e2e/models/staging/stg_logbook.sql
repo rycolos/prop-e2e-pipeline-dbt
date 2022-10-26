@@ -6,7 +6,7 @@
     select
       qso_date,
       time_off,
-      frequency,
+      freq as frequency,
       mode as comm_mode,
       call as receiver_callsign,
       gridsquare as receiver_locator,
