@@ -32,7 +32,7 @@ def list_psk_csv(data_dir):
 
     #remove from list if not ending in psk.csv
     for index, item in enumerate(unpruned_f):
-        if re.match('^.*psk\.csv$', item):
+        if re.match('^.*logb\.csv$', item):
             pruned_f.append(item)
 
     return pruned_f
@@ -44,12 +44,24 @@ def copy_all(db, host, user, pw, port, docker_data_dir, pruned_f):
 
     for item in pruned_f:
         query = f'''
-        CREATE TEMP TABLE tmp_table ON COMMIT DROP AS SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM raw_psk; \
-        COPY tmp_table \
+        CREATE TEMP TABLE tmp_log_table ON COMMIT DROP AS SELECT \
+        app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
+        my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, \
+        rst_rcvd, rst_sent, station_callsign, time_off, tx_pwr \
+        FROM raw_logbook; \
+        COPY tmp_log_table \
         FROM '{docker_data_dir}/{item}' \
         WITH (FORMAT CSV, HEADER, DELIMITER ','); \
-        INSERT INTO raw_psk (sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode) \
-        SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM tmp_table \
+
+        INSERT INTO raw_logbook ( \
+        app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
+        my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, rst_rcvd, \
+        rst_sent, station_callsign, time_off, tx_pwr ) \
+
+        SELECT app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
+        my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, rst_rcvd, \
+        rst_sent, station_callsign, time_off, tx_pwr \
+        FROM tmp_log_table \
         ON CONFLICT DO NOTHING;
         '''
 

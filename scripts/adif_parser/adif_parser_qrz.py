@@ -143,7 +143,6 @@ def main():
 
     #export to csv, no index column
     df.to_csv(export_file, index=False)
-    #update to export to a specific folder
 
 if __name__ == '__main__':
     main()

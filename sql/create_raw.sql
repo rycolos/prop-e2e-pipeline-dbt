@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS pskreporter_raw (
+CREATE TABLE IF NOT EXISTS raw_psk (
     sNR TEXT,
     mode TEXT,
     MHz TEXT,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS pskreporter_raw (
     CONSTRAINT raw_check_kc1qby CHECK (receiverCallsign LIKE '%KC1QBY%' OR senderCallsign LIKE '%KC1QBY%')
 );
 
-CREATE TABLE IF NOT EXISTS logbook_raw (
+CREATE TABLE IF NOT EXISTS raw_logbook (
     app_qrzlog_logid TEXT,
     call TEXT,
     country TEXT,
