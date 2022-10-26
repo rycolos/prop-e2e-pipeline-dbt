@@ -41,4 +41,4 @@ models:
 
 seeds:
   dbt_prop_e2e:
-    +schema: raw
+    schema: raw
