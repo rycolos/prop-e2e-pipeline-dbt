@@ -2,12 +2,12 @@ version: 2
 
 sources:
   - name: psk
-    description: 
+    description: "test"
     database: prop-e2e-dbt
     schema: raw
     tables:
       - name: psk
-        description: 
+        description: "test"
 
   - name: logbook
     description: 
@@ -15,4 +15,4 @@ sources:
     schema: raw
     tables:
       - name: logbook
-        description: 
+        description: "test"
