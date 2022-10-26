@@ -1,5 +1,6 @@
  with source as (
-    select * from {{ source('raw', 'psk') }}
+    --select * from {{ source('raw', 'psk') }}
+    select * from raw.psk
  ),
 
  transformed as (
