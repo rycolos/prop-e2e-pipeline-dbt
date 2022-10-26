@@ -1,18 +1,18 @@
-version: 2
+# version: 2
 
-sources:
-  - name: psk
-    description: "test"
-    database: prop-e2e-dbt
-    schema: raw
-    tables:
-      - name: psk
-        description: "test"
+# sources:
+#   - name: psk
+#     description: "test"
+#     database: prop-e2e-dbt
+#     schema: raw
+#     tables:
+#       - name: psk
+#         description: "test"
 
-  - name: logbook
-    description: "test"
-    database: prop-e2e-dbt
-    schema: raw
-    tables:
-      - name: logbook
-        description: "test"
+#   - name: logbook
+#     description: "test"
+#     database: prop-e2e-dbt
+#     schema: raw
+#     tables:
+#       - name: logbook
+#         description: "test"
