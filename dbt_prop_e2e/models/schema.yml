@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: psk
     description: A clone of a Postgres application database.
-    database: raw
+    database: prop-e2e-dbt
     schema: raw
     tables:
       - name: psk
@@ -11,7 +11,7 @@ sources:
 
   - name: logbook
     description: A clone of a Postgres application database.
-    database: raw
+    database: prop-e2e-dbt
     schema: raw
     tables:
       - name: logbook
