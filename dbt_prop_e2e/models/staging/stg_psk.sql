@@ -17,7 +17,7 @@
 
  transformed as (
     select
-      sNR
+      *
     from source
  )
 
