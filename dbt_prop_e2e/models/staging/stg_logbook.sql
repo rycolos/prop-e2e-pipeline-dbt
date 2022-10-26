@@ -2,53 +2,38 @@
     select * from {{ source('raw', 'logbook') }}
  ),
 
---  transformed as (
---     select
---         sNR,
---         mode as comm_mode,
---         frequency,
---         rxtime as rxtime_utc,
---         senderCallsign as sender_callsign,
---         senderLocator as sender_locator,
---         receiverCallsign as receiver_callsign,
---         receiverLocator as receiver_locator
---     from source
---  )
-
  transformed as (
     select
-      *
+      qso_date,
+      time_off,
+      frequency,
+      mode as comm_mode,
+      call as receiver_callsign,
+      gridsquare as receiver_locator,
+      station_callsign as sender_callsign,
+      my_gridsquare as sender_locator,
+      rst_rcvd,
+      rst_sent,
+      tx_pwr,
+      app_qrzlog_logid,
+      qrzcom_qso_upload_date
     from source
  )
 
 select * from transformed
 
---     id  BIGINT GENERATED ALWAYS AS IDENTITY,
---     snr INT,
---     comm_mode TEXT,
---     frequency DOUBLE PRECISION,
---     rxtime_utc TIMESTAMPTZ,
---     sender_callsign TEXT,
---     sender_locator TEXT,
---     sender_lat REAL,
---     sender_lon REAL,
---     receiver_callsign TEXT,
---     receiver_locator TEXT,
---     receiver_lat REAL,
---     receiver_lon REAL,
---     distance_mi REAL,
---     insertion_timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW(),
---     CONSTRAINT staged_psk_prim_key PRIMARY KEY (rxtime_utc, sender_callsign, receiver_callsign),
---     CONSTRAINT staged_check_kc1qby CHECK (receiver_callsign LIKE '%KC1QBY%' OR sender_callsign LIKE '%KC1QBY%')
-
-
--- INSERT INTO pskreporter_staged (snr, comm_mode, frequency, rxtime_utc, sender_callsign, sender_locator, receiver_callsign, receiver_locator)
+-- INSERT INTO logbook_staged (qso_date, time_off, frequency, comm_mode, receiver_callsign, receiver_locator, sender_callsign, sender_locator, rst_rcvd, rst_sent, tx_pwr, app_qrzlog_logid, qrzcom_qso_upload_date)
 -- SELECT
---     CAST(sNR AS INT),
+--     CAST(qso_date AS DATE),
+--     time_off,
+--     CAST(frequency AS DOUBLE PRECISION),
 --     mode,
---     CAST(MHz AS DOUBLE PRECISION),
---     TO_TIMESTAMP(rxtime, 'YYYY-MM-DD HH24:MI:SS') AT TIME ZONE 'UTC',
---     senderCallsign,
---     senderLocator,
---     receiverCallsign,
---     receiverLocator
+--     call,
+--     gridsquare,
+--     station_callsign,
+--     my_gridsquare,
+--     CAST(rst_rcvd AS INTEGER),
+--     CAST(rst_sent AS INTEGER),
+--     CAST(tx_pwr AS INTEGER),
+--     CAST(app_qrzlog_logid AS BIGINT),
+--     CAST(qrzcom_qso_upload_date AS DATE)
