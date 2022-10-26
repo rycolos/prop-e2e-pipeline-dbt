@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: psk
     database: prop-e2e-dbt
-    schema: analysis_raw
+    schema: raw
     tables:
       - name: psk
 

@@ -1,5 +1,5 @@
  with source as (
-    select * from {{ source('analysis_raw', 'psk') }}
+    select * from {{ source('raw', 'psk') }}
  ),
 
  transformed as (
