@@ -17,7 +17,7 @@
 
  transformed as (
     select
-      mode as comm_mode
+      sNR
     from source
  )
 
