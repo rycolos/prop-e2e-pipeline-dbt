@@ -4,7 +4,7 @@
 
  transformed as (
     select
-        "sNR" as snr
+        "sNR" as snr,
         mode as comm_mode,
         frequency,
         "rxTime" as rxtime_utc,
