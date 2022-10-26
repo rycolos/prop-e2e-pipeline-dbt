@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: psk
+    database: prop-e2e-dbt
+    schema: analysis_raw
+    tables:
+      - name: psk
+
+  # - name: logbook
+  #   description: "test"
+  #   database: prop-e2e-dbt
+  #   schema: raw
+  #   tables:
+  #     - name: logbook
+  #       description: "test"
