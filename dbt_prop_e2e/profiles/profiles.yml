@@ -1,0 +1,35 @@
+# demo:
+#   target: local
+#   outputs:
+#     docker:
+#       type: postgres
+#       host: "host.docker.internal"
+#       user: "postgres"
+#       password: "postgres"
+#       port: 5432
+#       dbname: "postgres"
+#       schema : "public"
+#       threads: 4
+#     local:
+#       type: postgres
+#       host: "localhost"
+#       user: "postgres"
+#       password: "postgres"
+#       port: 5432
+#       dbname: "postgres"
+#       schema : "public"
+#       threads: 4
+
+dbt_prop_e2e:
+    target: local
+    outputs:
+      local:
+        type: postgres
+        threads: 1
+        host: localhost
+        port: 5432
+        user: postgres
+        pass: postgres
+        dbname: prop-e2e-dbt
+        schema: raw
+
