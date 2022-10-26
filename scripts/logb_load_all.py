@@ -48,12 +48,12 @@ def copy_all(db, host, user, pw, port, docker_data_dir, pruned_f):
         app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
         my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, \
         rst_rcvd, rst_sent, station_callsign, time_off, tx_pwr \
-        FROM raw_logbook; \
+        FROM raw.logbook; \
         COPY tmp_log_table \
         FROM '{docker_data_dir}/{item}' \
         WITH (FORMAT CSV, HEADER, DELIMITER ','); \
 
-        INSERT INTO raw_logbook ( \
+        INSERT INTO raw.logbook ( \
         app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
         my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, rst_rcvd, \
         rst_sent, station_callsign, time_off, tx_pwr ) \

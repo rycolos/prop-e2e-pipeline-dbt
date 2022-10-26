@@ -44,11 +44,11 @@ def copy_all(db, host, user, pw, port, docker_data_dir, pruned_f):
 
     for item in pruned_f:
         query = f'''
-        CREATE TEMP TABLE tmp_table ON COMMIT DROP AS SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM raw_psk; \
+        CREATE TEMP TABLE tmp_table ON COMMIT DROP AS SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM raw.psk; \
         COPY tmp_table \
         FROM '{docker_data_dir}/{item}' \
         WITH (FORMAT CSV, HEADER, DELIMITER ','); \
-        INSERT INTO raw_psk (sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode) \
+        INSERT INTO raw.psk (sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode) \
         SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM tmp_table \
         ON CONFLICT DO NOTHING;
         '''
