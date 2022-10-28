@@ -8,10 +8,12 @@
       time_off,
       frequency as frequency,
       mode as comm_mode,
-      call as receiver_callsign,
-      gridsquare as receiver_locator,
       station_callsign as sender_callsign,
       my_gridsquare as sender_locator,
+      my_country as sender_country,
+      call as receiver_callsign,
+      gridsquare as receiver_locator,
+      country as sender_country,
       rst_rcvd,
       rst_sent,
       tx_pwr,
@@ -21,6 +23,7 @@
  )
 
 select * from transformed
+
 
 -- INSERT INTO logbook_staged (qso_date, time_off, frequency, comm_mode, receiver_callsign, receiver_locator, sender_callsign, sender_locator, rst_rcvd, rst_sent, tx_pwr, app_qrzlog_logid, qrzcom_qso_upload_date)
 -- SELECT
