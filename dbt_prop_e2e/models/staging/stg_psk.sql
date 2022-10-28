@@ -7,7 +7,7 @@
         cast(sNR as int) as snr,
         mode as comm_mode,
         cast(MHz as DOUBLE PRECISION) as frequency,
-        TO_TIMESTAMP(rxtime, 'YYYY-MM-DD HH24:MI:SS') AT TIME ZONE 'UTC' as rxtime_utc,
+        to_timestamp(rxtime, 'YYYY-MM-DD HH24:MI:SS') at time zone 'UTC' as rxtime_utc,
         senderCallsign as sender_callsign,
         senderLocator as sender_locator,
         senderDXCC as sender_dxcc,
