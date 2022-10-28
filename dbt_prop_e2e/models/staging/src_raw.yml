@@ -6,4 +6,18 @@ sources:
     schema: raw
     tables:
       - name: psk
+        columns:
+          - name: sender_callsign
+            tests:
+              - not_null
+          - name: receiver_callsign
+            tests:
+              - not_null
       - name: logbook
+        columns:
+          - name: sender_callsign
+            tests:
+              - not_null
+          - name: receiver_callsign
+            tests:
+              - not_null
