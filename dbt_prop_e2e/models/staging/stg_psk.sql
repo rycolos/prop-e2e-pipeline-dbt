@@ -13,7 +13,7 @@ transformed as (
       receiverCallsign as receiver_callsign,
       receiverLocator as receiver_locator,
       receiverAntennaInformation as receiver_antenna_info,
-      cast(sNR as int) as snr,
+      cast(sNR as int) as snr
     from source
  )
 
