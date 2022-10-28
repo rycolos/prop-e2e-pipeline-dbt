@@ -4,21 +4,21 @@
 
  transformed as (
     select
-      qso_date,
+      cast(qso_date as date),
       time_off,
-      frequency as frequency,
+      cast(frequency as double precision),
       mode as comm_mode,
       station_callsign as sender_callsign,
       my_gridsquare as sender_locator,
       my_country as sender_country,
       call as receiver_callsign,
       gridsquare as receiver_locator,
-      country as sender_country,
-      rst_rcvd,
-      rst_sent,
-      tx_pwr,
-      app_qrzlog_logid,
-      qrzcom_qso_upload_date
+      country as receiver_country,
+      cast(rst_rcvd as int),
+      cast(rst_sent as int),
+      cast(tx_pwr as int),
+      cast(app_qrzlog_logid as bigint),
+      cast(qrzcom_qso_upload_date as date)
     from source
  )
 
