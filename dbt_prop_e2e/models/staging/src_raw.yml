@@ -15,9 +15,9 @@ sources:
               - not_null
       - name: logbook
         columns:
-          - name: callsign
+          - name: call
             tests:
               - not_null
-          - name: my_callsign
+          - name: station_callsign
             tests:
               - not_null
