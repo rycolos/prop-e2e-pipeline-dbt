@@ -4,14 +4,14 @@
 
  transformed as (
     select
-        "sNR" as snr,
+        sNR as snr,
         mode as comm_mode,
-        "MHz" as frequency,
-        "rxTime" as rxtime_utc,
-        "senderCallsign" as sender_callsign,
-        "senderLocator" as sender_locator,
-        "receiverCallsign" as receiver_callsign,
-        "receiverLocator" as receiver_locator
+        MHz as frequency,
+        rxTime as rxtime_utc,
+        senderCallsign as sender_callsign,
+        senderLocator as sender_locator,
+        receiverCallsign as receiver_callsign,
+        receiverLocator as receiver_locator
     from source
  )
 
