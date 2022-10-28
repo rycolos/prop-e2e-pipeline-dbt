@@ -7,17 +7,17 @@ sources:
     tables:
       - name: psk
         columns:
-          - name: sender_callsign
+          - name: sendercallsign
             tests:
               - not_null
-          - name: receiver_callsign
+          - name: receivercallsign
             tests:
               - not_null
       - name: logbook
         columns:
-          - name: sender_callsign
+          - name: sendercallsign
             tests:
               - not_null
-          - name: receiver_callsign
+          - name: receivercallsign
             tests:
               - not_null
