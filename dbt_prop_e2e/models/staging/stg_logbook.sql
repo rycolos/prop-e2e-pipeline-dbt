@@ -6,7 +6,7 @@
     select
       -- cast(qso_date as date),
       -- time_off as time_off_utc
-      to_timestamp(cast(extract(epoch from(qso_date + make_time(cast(substring(time_off, 1, 2) as int), cast(substring(time_off, 3, 2) as int), 00))) as double precision)) at time zone 'UTC' as rxtime_utc,
+      to_timestamp(cast(extract(epoch from(cast(qso_date as date) + make_time(cast(substring(time_off, 1, 2) as int), cast(substring(time_off, 3, 2) as int), 00))) as double precision)) at time zone 'UTC' as rxtime_utc,
       cast(frequency as double precision),
       mode as comm_mode,
       station_callsign as sender_callsign,
