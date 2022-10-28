@@ -36,7 +36,9 @@ models:
     # Config indicated by + and applies to all files under models/example/
     staging:
       +materialized: table
+    marts:
+      +materialized: view
 
-seeds:
-  dbt_prop_e2e:
-    schema: raw
+# seeds:
+#   dbt_prop_e2e:
+#     schema: raw
