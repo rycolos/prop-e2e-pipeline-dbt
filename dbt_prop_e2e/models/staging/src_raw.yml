@@ -15,9 +15,9 @@ sources:
               - not_null
       - name: logbook
         columns:
-          - name: sendercallsign
+          - name: callsign
             tests:
               - not_null
-          - name: receivercallsign
+          - name: my_callsign
             tests:
               - not_null
