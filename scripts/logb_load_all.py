@@ -6,6 +6,8 @@ docker_data_dir = '/var/lib/postgresql/data/source_data'
 script_dir = os.path.dirname(__file__)
 config_path = f'{script_dir}/config.yaml'
 
+table_name = 'raw.logbook'
+
 def config_parse(config_path):
     #Parse yaml config file for db, user, pw, host, port
     try:
@@ -48,12 +50,12 @@ def copy_all(db, host, user, pw, port, docker_data_dir, pruned_f):
         app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
         my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, \
         rst_rcvd, rst_sent, station_callsign, time_off, tx_pwr \
-        FROM raw.logbook; \
+        FROM {table_name}; \
         COPY tmp_log_table \
         FROM '{docker_data_dir}/{item}' \
         WITH (FORMAT CSV, HEADER, DELIMITER ','); \
 
-        INSERT INTO raw.logbook ( \
+        INSERT INTO {table_name} ( \
         app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
         my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, rst_rcvd, \
         rst_sent, station_callsign, time_off, tx_pwr ) \

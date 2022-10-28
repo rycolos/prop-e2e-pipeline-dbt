@@ -2,13 +2,14 @@
 
 DATADIR="/home/kepler/prop-e2e-pipeline/postgres_data/source_data"
 DOCKERDATADIR="/var/lib/postgresql/data/source_data"
-SQLDIR="/home/kepler/prop-e2e-pipeline/sql"
-SCRIPTDIR="/home/kepler/prop-e2e-pipeline/scripts"
+SQLDIR="/home/kepler/prop-e2e-pipeline-dbt/sql"
+SCRIPTDIR="/home/kepler/prop-e2e-pipeline-dbt/scripts"
 DB="prop-e2e"
 USER="postgres"
 KEY="A02C-3B9A-CCCF-F366"
 SDATE=$(date +%Y-%m-%d -d "-7 days")
 EDATE=$(date +%Y-%m-%d)
+TABLENAME="raw.logbook"
 
 mkdir -p "$DATADIR"
 
@@ -31,12 +32,12 @@ docker exec -i prop-e2e-pipeline-postgres-1 psql -d $DB -U $USER --command="CREA
 app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
 my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, \
 rst_rcvd, rst_sent, station_callsign, time_off, tx_pwr \
-FROM raw.logbook; \
+FROM $TABLENAME; \
 COPY tmp_log_table \
 FROM '$DOCKERDATADIR/$(date +%Y-%m-%d)_logb.csv' \
 WITH (FORMAT CSV, HEADER, DELIMITER ','); \
 
-INSERT INTO raw.logbook ( \
+INSERT INTO $TABLENAME ( \
 app_qrzlog_logid, call, country, frequency, gridsquare, mode, \
 my_country, my_gridsquare, qrzcom_qso_upload_date, qso_date, rst_rcvd, \
 rst_sent, station_callsign, time_off, tx_pwr ) \

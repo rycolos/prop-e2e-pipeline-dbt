@@ -5,6 +5,7 @@ DATADIR="/home/kepler/prop-e2e-pipeline/postgres_data/source_data"
 DOCKERDATADIR="/var/lib/postgresql/data/source_data"
 DB="prop-e2e"
 USER="postgres"
+TABLENAME="raw.psk"
 
 mkdir -p "$DATADIR"
 
@@ -22,11 +23,11 @@ sed -i  's/\([^,]\)"\([^,]\)/\1\2/g' "$DATADIR"/$(date +%Y-%m-%d)_psk.csv
 
 #APPEND TO RAW DB
 echo "Appending to DB..."
-docker exec -i prop-e2e-pipeline-postgres-1 psql -d $DB -U $USER --command="CREATE TEMP TABLE tmp_table ON COMMIT DROP AS SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM raw.psk; \
+docker exec -i prop-e2e-pipeline-postgres-1 psql -d $DB -U $USER --command="CREATE TEMP TABLE tmp_table ON COMMIT DROP AS SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM $TABLENAME; \
 COPY tmp_table \
 FROM '$DOCKERDATADIR/$(date +%Y-%m-%d)_psk.csv' \
 WITH (FORMAT CSV, HEADER, DELIMITER ','); \
-INSERT INTO raw.psk (sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode) \
+INSERT INTO $TABLENAME (sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode) \
 SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM tmp_table \
 ON CONFLICT DO NOTHING;"
 
