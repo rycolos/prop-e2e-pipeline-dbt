@@ -4,11 +4,9 @@
 
  transformed as (
     select
-      -- cast(qso_date as date),
-      -- time_off as time_off_utc
-      to_timestamp(cast(extract(epoch from(cast(qso_date as date) + make_time(cast(substring(time_off, 1, 2) as int), cast(substring(time_off, 3, 2) as int), 00))) as double precision)) at time zone 'UTC' as rxtime_utc,
-      cast(frequency as double precision),
+      to_timestamp(cast(extract(epoch from(cast(qso_date as date) + make_time(cast(substring(time_off, 1, 2) as int), cast(substring(time_off, 3, 2) as int), 00))) as double precision)) as rxtime_utc,
       mode as comm_mode,
+      cast(frequency as double precision),
       station_callsign as sender_callsign,
       my_gridsquare as sender_locator,
       my_country as sender_country,
