@@ -4,7 +4,7 @@ with source as (
 
 transformed as (
    select
-      {{ dbt_utils.surroage_key(
+      {{ dbt_utils.surrogate_key(
          'rxtime',
          'sendercallsign',
          'receivercallsign'
