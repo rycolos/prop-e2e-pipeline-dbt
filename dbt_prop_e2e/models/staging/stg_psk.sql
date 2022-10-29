@@ -4,11 +4,7 @@ with source as (
 
 transformed as (
    select
-      {{ dbt_utils.surrogate_key(
-         'rxtime',
-         'sendercallsign',
-         'receivercallsign'
-      )}} as id,
+      {{ dbt_utils.surrogate_key(['rxtime', 'sendercallsign', 'receivercallsign']) }} as id,
       to_timestamp(rxtime, 'YYYY-MM-DD HH24:MI:SS') as rxtime_utc,
       mode as comm_mode,
       cast(MHz as DOUBLE PRECISION) as frequency,
