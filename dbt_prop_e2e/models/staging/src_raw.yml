@@ -7,7 +7,7 @@ sources:
     tables:
       - name: psk
         columns:
-          - id:
+          - name: id
             tests:
               - unique
               - not_null
@@ -19,7 +19,7 @@ sources:
               - not_null
       - name: logbook
         columns:
-          - id:
+          - name: id
             tests:
               - unique
               - not_null
