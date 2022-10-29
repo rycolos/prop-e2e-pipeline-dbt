@@ -7,6 +7,10 @@ sources:
     tables:
       - name: psk
         columns:
+          - id:
+            tests:
+              - unique
+              - not_null
           - name: sendercallsign
             tests:
               - not_null
@@ -15,6 +19,10 @@ sources:
               - not_null
       - name: logbook
         columns:
+          - id:
+            tests:
+              - unique
+              - not_null
           - name: call
             tests:
               - not_null
