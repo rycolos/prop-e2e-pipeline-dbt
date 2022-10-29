@@ -4,11 +4,7 @@
 
  transformed as (
     select
-      {{ dbt_utils.surrogate_key(
-         'qso_date',
-         'time_off',
-         'call'
-      )}} as id,
+      {{ dbt_utils.surrogate_key(['qso_date', 'time_off', 'call']) }} as id,
       to_timestamp(cast(extract(epoch from(cast(qso_date as date) + make_time(cast(substring(time_off, 1, 2) as int), cast(substring(time_off, 3, 2) as int), 00))) as double precision)) as rxtime_utc,
       mode as comm_mode,
       cast(frequency as double precision),
