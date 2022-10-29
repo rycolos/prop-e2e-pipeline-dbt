@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: raw
+    database: prop-e2e-dbt
+    schema: raw
+    tables:
+      - name: psk
+        columns:
+          - name: sendercallsign
+            tests:
+              - not_null
+          - name: receivercallsign
+            tests:
+              - not_null
+      - name: logbook
+        columns:
+          - name: call
+            tests:
+              - not_null
+          - name: station_callsign
+            tests:
+              - not_null
+
+  - name: staged
+    database: prop-e2e-dbt
+    schema: analysis
+    tables:
+      - name: stg_psk
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: sender_callsign
+            tests:
+              - not_null
+          - name: receiver_callsign
+            tests:
+              - not_null
+      - name: stg_logbook
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: sender_callsign
+            tests:
+              - not_null
+          - name: receiver_callsign
+            tests:
+              - not_null
