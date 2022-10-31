@@ -27,8 +27,10 @@ sources:
     schema: analysis
     tables:
       - name: stg_psk
+        description: "Staged implementation of raw.psk data"
         columns:
           - name: id
+            description: "Surrogate primary key based on rxtime_utc, sender_callsign, and receiver_callsign."
             tests:
               - unique
               - not_null
@@ -39,8 +41,10 @@ sources:
             tests:
               - not_null
       - name: stg_logbook
+        description: "Staged implementation of raw.logbook data"
         columns:
           - name: id
+            description: "Surrogate primary key based on qso_date, time_off, and receiver_callsign"
             tests:
               - unique
               - not_null
