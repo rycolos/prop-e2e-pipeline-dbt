@@ -44,7 +44,7 @@ sources:
         description: "Staged implementation of raw.logbook data"
         columns:
           - name: id
-            description: "Surrogate primary key based on qso_date, time_off, and receiver_callsign"
+            description: "Surrogate primary key based on rxtime_utc and receiver_callsign"
             tests:
               - unique
               - not_null
