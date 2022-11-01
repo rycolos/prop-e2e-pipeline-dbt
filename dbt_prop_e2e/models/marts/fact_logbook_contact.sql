@@ -5,5 +5,5 @@ SELECT
     sender_callsign,
     receiver_callsign,
     rst_sent,
-    rst_recvd
+    rst_rcvd
 FROM {{ ref ('stg_logbook') }}
