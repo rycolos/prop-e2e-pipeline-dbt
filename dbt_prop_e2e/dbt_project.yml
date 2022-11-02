@@ -38,7 +38,3 @@ models:
       +materialized: table
     marts:
       +materialized: view
-
-# seeds:
-#   dbt_prop_e2e:
-#     schema: raw
