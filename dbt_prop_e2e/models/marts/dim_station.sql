@@ -57,7 +57,7 @@ final_merge AS (
     ORDER BY l.logb_locator
 )
 
-transformed AS(
+transformed AS ( 
     SELECT 
         callsign,
         psk_locator,
