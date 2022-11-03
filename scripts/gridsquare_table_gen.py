@@ -1,28 +1,42 @@
 import csv
 
-let_list = []
-for x in range(18):
-    init_let='A'
-    first=f'{chr(ord(init_let) + x)}'
+'''
+used to generate a static list of 32,400 4-digit maidenhead gridsquares and their lat/lon conversions
+and dump to a csv file for upload to db
+'''
 
-    for y in range(18):
-        final=f'{first}{chr(ord(init_let) + y)}'
-        let_list.append(final)
+def grid_gen():
+    '''
+    generate letletnumnum list 
+    where A-R can appear in the first two places and 0-9 can appear in last two places
+    e.g., AA00, AA01...AA99, AB00, AB01...RR99
+    '''
 
-num_list = []
-for i in range(100):
-    if i < 10:
-        num_list.append(f'0{str(i)}')
-    if i > 9:
-        num_list.append(i)
+    let_list = []
+    for x in range(18):
+        init_let='A'
+        first=f'{chr(ord(init_let) + x)}'
 
-fin_list = []
-for x in range(len(let_list)):
-    first = let_list[x]
+        for y in range(18):
+            final=f'{first}{chr(ord(init_let) + y)}'
+            let_list.append(final)
 
-    for y in range(len(num_list)):
-        final = f'{first}{num_list[y]}'
-        fin_list.append(final)
+    num_list = []
+    for i in range(100):
+        if i < 10:
+            num_list.append(f'0{str(i)}')
+        if i > 9:
+            num_list.append(i)
+
+    fin_list = []
+    for x in range(len(let_list)):
+        first = let_list[x]
+
+        for y in range(len(num_list)):
+            final = f'{first}{num_list[y]}'
+            fin_list.append(final)
+    
+    return(fin_list)
 
 def to_location(grid):
     # takes grid string and returns top-left lat, lon of grid square
@@ -50,19 +64,29 @@ def to_location(grid):
         lat += (ord(grid[5]) - Oa) * 2.5 / 60
     return lat, lon
 
-fin_lat_list = []
-fin_lon_list = []
-for i in range(len(fin_list)):
-    lat, lon = to_location(fin_list[i])
-    fin_lat_list.append(lat)
-    fin_lon_list.append(lon)
+def lat_lon_gen(fin_list):
+    fin_lat_list = []
+    fin_lon_list = []
+    
+    for i in range(len(fin_list)):
+        lat, lon = to_location(fin_list[i])
+        fin_lat_list.append(lat)
+        fin_lon_list.append(lon)
+    
+    return(fin_lat_list, fin_lon_list)
 
-print(fin_lat_list)
+def main():
+    grid_list = grid_gen()
+    final_lat_list, final_lon_list = lat_lon_gen(grid_list)
 
-print(f'{len(fin_list)} items written')
+    print(f'{len(grid_list)} items written')
 
-with open('gridsquare_lat_lon.csv', mode='w') as csv_file:
-    writer = csv.writer(csv_file)
-    headers = ['grid', 'lat', 'lon']
-    writer.writerow(headers)
-    writer.writerows(zip(fin_list, fin_lat_list, fin_lon_list))    
+    with open('gridsquare_lat_lon.csv', mode='w') as csv_file:
+        writer = csv.writer(csv_file)
+        headers = ['grid', 'lat', 'lon']
+        writer.writerow(headers)
+        writer.writerows(zip(grid_list, final_lat_list, final_lon_list))    
+
+if __name__ == '__main__':
+    main()
+
