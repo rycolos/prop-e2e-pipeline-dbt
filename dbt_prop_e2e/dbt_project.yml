@@ -41,4 +41,3 @@ models:
 
 seeds:
   dbt_prop_e2e:
-    #schema: analysis
