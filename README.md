@@ -1,5 +1,18 @@
 # **prop-e2e-pipeline-dbt**
 
+```
+# seed maidenhead grid to lat/lon lookup table in analysis schema
+dbt seed --profiles-dir ./profiles
+
+#documentation generate
+dbt docs generate
+
+#documentation serve - dbt docs serve isn't working, likely because I'm running on a headless machine
+#navigate to /target dir instead and run:
+python3 -m http.server
+
+```
+
 ## Objective
 This is an expansion of my [prop-e2e-pipeline project](https://github.com/rycolos/prop-e2e-pipeline), with the addition of [dbt](https://getdbt.com/) for transformation.
 
