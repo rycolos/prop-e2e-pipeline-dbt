@@ -43,7 +43,7 @@ logbook_merge AS (
 	FROM {{ ref ('stg_logbook') }}
 ),
 
-final AS (
+final_merge AS (
     SELECT
         p.callsign,
         p.psk_locator,
@@ -57,4 +57,18 @@ final AS (
     ORDER BY l.logb_locator
 )
 
-SELECT * FROM final
+transformed AS(
+    SELECT 
+        callsign,
+        psk_locator,
+        logb_locator,
+        psk_country,
+        logb_country,
+        g.lat AS psk_lat,
+        g.lon AS psk_lon
+    FROM final_merge AS s
+    JOIN {{ ref ('gridsquare_lat_lon') }} AS g
+    ON LEFT(s.psk_locator, 4) = g.grid
+)
+
+SELECT * FROM transformed
