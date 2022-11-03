@@ -55,7 +55,7 @@ final_merge AS (
     FULL OUTER JOIN logbook_merge AS l
     ON p.callsign = l.callsign
     ORDER BY l.logb_locator
-)
+),
 
 transformed AS ( 
     SELECT 
