@@ -10,25 +10,25 @@ models:
           - unique
           - not_null
       - name: rxtime_utc
-        description: "will add"
+        description: "Time in UTC that station was heard"
       - name: comm_mode
-        description: "will add"
+        description: "Communication mode"
       - name: frequency
-        description: "will add"
+        description: "Communication frequency"
       - name: sender_callsign
-        description: "will add"
+        description: "Callsign of sending station"
         tests:
           - not_null
       - name: sender_locator
-        description: "will add"
+        description: "Maidenhead grid locator of sending station"
       - name: sender_dxcc
         description: "will add"
       - name: receiver_callsign
-        description: "will add"
+        description: "Callsign of receiving station"
         tests:
           - not_null
       - name: receiver_locator
-        description: "will add"
+        description: "Maidenhead grid locator of receiving station"
       - name: receiver_antenna_info
         description: "will add"
       - name: snr
@@ -42,23 +42,25 @@ models:
           - unique
           - not_null
       - name: rxtime_utc
-        description: "will add"
+        description: "Time in UTC that contact concluded"
       - name: comm_mode
-        description: "will add"
+        description: "Communication mode"
       - name: frequency
-        description: "will add"
+        description: "Communication frequency"
       - name: sender_callsign
+        description: "Callsign of station initiating contact"
         tests:
           - not_null
       - name: sender_locator
-        description: "will add"
+        description: "Maidenhead grid locator of station initiating contact"
       - name: sender_country
         description: "will add"
       - name: receiver_callsign
+        description: "Callsign of receiving station"
         tests:
           - not_null
       - name: receiver_locator
-        description: "will add"
+        description: "Maidenhead grid locator of receiving station"
       - name: receiver_country
         description: "will add"
       - name: rst_rcvd
@@ -66,8 +68,10 @@ models:
       - name: rst_sent
         description: "will add"
       - name: tx_pwr
-        description: "will add"
+        description: "Logged transmit power (manually added to logbook)"
       - name: app_qrzlog_logid
-        description: "will add"
+        description: "Unique id from qrz.com logbook"
+        tests:
+          - unique
       - name: qrzcom_qso_upload_date
-        description: "will add"
+        description: "Upload date of logbook entry to qrz.com logbook"
