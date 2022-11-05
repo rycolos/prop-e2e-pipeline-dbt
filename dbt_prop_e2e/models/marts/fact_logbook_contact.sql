@@ -2,7 +2,7 @@ SELECT
     rxtime_utc,
     comm_mode,
     frequency,
-    sender_callsign,
+    home_station_callsign,
     receiver_callsign,
     rst_sent,
     rst_rcvd

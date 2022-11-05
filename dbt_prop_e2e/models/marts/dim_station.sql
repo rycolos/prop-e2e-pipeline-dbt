@@ -30,8 +30,8 @@ psk_merge AS (
 logbook_merge AS (
 	SELECT 
 		DISTINCT sender_callsign AS callsign,
-		sender_locator AS logb_locator,
-		sender_country AS logb_country	
+		home_station_locator AS logb_locator,
+		home_station_country AS logb_country	
 	FROM {{ ref ('stg_logbook') }}
 
 	UNION

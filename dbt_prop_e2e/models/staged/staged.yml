@@ -33,6 +33,7 @@ models:
         description: "will add"
       - name: snr
         description: "will add"
+  
   - name: stg_logbook
     description: "Staged implementation of raw.logbook data"
     columns:
@@ -47,14 +48,14 @@ models:
         description: "Communication mode"
       - name: frequency
         description: "Communication frequency"
-      - name: sender_callsign
-        description: "Callsign of station initiating contact"
+      - name: home_station_callsign
+        description: "Callsign of home stationt"
         tests:
           - not_null
-      - name: sender_locator
-        description: "Maidenhead grid locator of station initiating contact"
-      - name: sender_country
-        description: "will add"
+      - name: home_station_locator
+        description: "Maidenhead grid locator of home station"
+      - name: home_station_country
+        description: "Country of home station"
       - name: receiver_callsign
         description: "Callsign of receiving station"
         tests:
@@ -62,7 +63,7 @@ models:
       - name: receiver_locator
         description: "Maidenhead grid locator of receiving station"
       - name: receiver_country
-        description: "will add"
+        description: "Country of receiving station"
       - name: rst_rcvd
         description: "will add"
       - name: rst_sent
