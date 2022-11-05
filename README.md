@@ -11,6 +11,12 @@ dbt docs generate
 #navigate to /target dir instead and run:
 python3 -m http.server
 
+#run tests
+dbt test --profiles-dir ./profiles
+
+#run
+dbt run --full-refresh --profiles-dir ./profiles
+
 ```
 
 ## Objective
