@@ -29,7 +29,7 @@ psk_merge AS (
 
 logbook_merge AS (
 	SELECT 
-		DISTINCT sender_callsign AS callsign,
+		DISTINCT home_station_callsign AS callsign,
 		home_station_locator AS logb_locator,
 		home_station_country AS logb_country	
 	FROM {{ ref ('stg_logbook') }}
