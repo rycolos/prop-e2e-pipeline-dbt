@@ -9,12 +9,30 @@ models:
         tests:
           - unique
           - not_null
+      - name: rxtime_utc
+        description: "will add"
+      - name: comm_mode
+        description: "will add"
+      - name: frequency
+        description: "will add"
       - name: sender_callsign
+        description: "will add"
         tests:
           - not_null
+      - name: sender_locator
+        description: "will add"
+      - name: sender_dxcc
+        description: "will add"
       - name: receiver_callsign
+        description: "will add"
         tests:
           - not_null
+      - name: receiver_locator
+        description: "will add"
+      - name: receiver_antenna_info
+        description: "will add"
+      - name: snr
+        description: "will add"
   - name: stg_logbook
     description: "Staged implementation of raw.logbook data"
     columns:
@@ -23,9 +41,33 @@ models:
         tests:
           - unique
           - not_null
+      - name: rxtime_utc
+        description: "will add"
+      - name: comm_mode
+        description: "will add"
+      - name: frequency
+        description: "will add"
       - name: sender_callsign
         tests:
           - not_null
+      - name: sender_locator
+        description: "will add"
+      - name: sender_country
+        description: "will add"
       - name: receiver_callsign
         tests:
           - not_null
+      - name: receiver_locator
+        description: "will add"
+      - name: receiver_country
+        description: "will add"
+      - name: rst_rcvd
+        description: "will add"
+      - name: rst_sent
+        description: "will add"
+      - name: tx_pwr
+        description: "will add"
+      - name: app_qrzlog_logid
+        description: "will add"
+      - name: qrzcom_qso_upload_date
+        description: "will add"
