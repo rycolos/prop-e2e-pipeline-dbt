@@ -22,7 +22,7 @@ models:
       - name: sender_locator
         description: "Maidenhead grid locator of sending station"
       - name: sender_dxcc
-        description: "will add"
+        description: "DXCC entity (aka country) of sending station"
       - name: receiver_callsign
         description: "Callsign of receiving station"
         tests:
@@ -30,9 +30,9 @@ models:
       - name: receiver_locator
         description: "Maidenhead grid locator of receiving station"
       - name: receiver_antenna_info
-        description: "will add"
+        description: "Ingested from decoding software (FLDIGI, WSJT-X, etc) and should not necessarily be trusted as up to date"
       - name: snr
-        description: "will add"
+        description: "Signal-to-noise ratio from the perspective of the receiving station"
   
   - name: stg_logbook
     description: "Staged implementation of raw.logbook data"
@@ -65,9 +65,9 @@ models:
       - name: receiver_country
         description: "Country of receiving station"
       - name: rst_rcvd
-        description: "will add"
+        description: "Readability, Strength, and Tone measure of home station's signal. Will be represeted as an SNR value for digital communication modes."
       - name: rst_sent
-        description: "will add"
+        description: "Readability, Strength, and Tone measure of receiving station's signal. Will be represeted as an SNR value for digital communication modes."
       - name: tx_pwr
         description: "Logged transmit power (manually added to logbook)"
       - name: app_qrzlog_logid
