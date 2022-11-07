@@ -17,7 +17,7 @@ station2 AS (
         psk_lon AS s2_lon
     FROM {{ ref('dim_station') }}
     WHERE callsign = 'NS4J'
-),
+)
 
 SELECT s1_call, s1_lat, s2_lat FROM station1
 UNION
