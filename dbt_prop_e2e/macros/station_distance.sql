@@ -9,22 +9,22 @@
 {% set s1_lat_query %}
 select psk_lat from {{ ref('dim_station') }}
 where callsign = {{ station1 }}
-{% endset }%
+{% endset %}
 
 {% set s1_lon_query %}
 select psk_lon from {{ ref('dim_station') }}
 where callsign = {{ station1 }}
-{% endset }%
+{% endset %}
 
 {% set s2_lat_query %}
 select psk_lat from {{ ref('dim_station') }}
 where callsign = {{ station2 }}
-{% endset }%
+{% endset %}
 
 {% set s2_lon_query %}
 select psk_lon from {{ ref('dim_station') }}
 where callsign = {{ station2 }}
-{% endset }%
+{% endset %}
 
 {% set station1_lat = run_query(s1_lat_query) %}
 {% set station1_lon = run_query(s1_lon_query) %}
