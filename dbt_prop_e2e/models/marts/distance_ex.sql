@@ -6,8 +6,8 @@ WITH station1 AS (
         callsign AS s1_call,
         psk_lat AS s1_lat,
         psk_lon AS s1_lon
-    WHERE callsign = 'KC1QBY'
     FROM {{ ref('dim_station') }}
+    WHERE callsign = 'KC1QBY'
 ),
 
 station2 AS (
@@ -15,8 +15,8 @@ station2 AS (
         callsign AS s2_call,
         psk_lat AS s2_lat,
         psk_lon AS s2_lon
-    WHERE callsign = 'NS4J'
     FROM {{ ref('dim_station') }}
+    WHERE callsign = 'NS4J'
 ),
 
 SELECT s1_call, s1_lat, s2_lat FROM station1
