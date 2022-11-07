@@ -1,4 +1,4 @@
-{% macro station_distance(station1, station2) -%}
+{% macro station_distance(call1, call2) -%}
 
 WITH station1 AS (
     SELECT
@@ -6,7 +6,7 @@ WITH station1 AS (
         psk_lat AS s1_lat,
         psk_lon AS s1_lon
     FROM {{ ref('dim_station') }}
-    WHERE callsign = {{ station1 }}
+    WHERE callsign = {{ call1 }}
 ),
 
 station2 AS (
@@ -15,7 +15,7 @@ station2 AS (
         psk_lat AS s2_lat,
         psk_lon AS s2_lon
     FROM {{ ref('dim_station') }}
-    WHERE callsign = {{ station2 }}
+    WHERE callsign = {{ call2 }}
 )
 
 SELECT
