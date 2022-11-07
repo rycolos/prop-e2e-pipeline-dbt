@@ -4,7 +4,7 @@
 
 --lat lon from psk_lat and psk_lon in dim_station
 
-{% macro station_distance(station1, station2) %}
+{% macro station_distance(station1, station2) -%}
 
 {% set s1_lat_query %}
 select psk_lat from {{ ref('dim_station') }}
@@ -33,4 +33,4 @@ where callsign = {{ station2 }}
 
 CAST(SQRT(POW(69.1 * ({{ station1_lat }} -  {{ station2_lat }}), 2) + POW(69.1 * ({{ station2_lon }} - {{ station1_lon }}) * COS({{ station1_lat }} / 57.3), 2)) AS REAL)
 
-{% endmacro %}
+{%- endmacro %}
