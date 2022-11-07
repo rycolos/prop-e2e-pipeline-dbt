@@ -1,6 +1,3 @@
-
---CAST(SQRT(POW(69.1 * ({{ station1_lat }}::REAL -  {{ station2_lat }}::REAL), 2) + POW(69.1 * ({{ station2_lon }}::REAL - {{ station1_lon }}::REAL) * COS({{ station1_lat }}::REAL / 57.3), 2)) AS REAL)
-
 WITH station1 AS (
     SELECT
         callsign AS s1_call,
@@ -19,6 +16,9 @@ station2 AS (
     WHERE callsign = 'NS4J'
 )
 
-SELECT s1_call, s1_lat, s1_lon FROM station1
-UNION
-SELECT s2_call, s2_lat, s2_lon FROM station2
+SELECT
+	s1.s1_call,
+	s2.s2_call,
+	CAST(SQRT(POW(69.1 * (s1.s1_lat -  s2.s2_lat), 2) + POW(69.1 * (s2.s2_lon - s1.s1_lon) * COS(s1.s1_lat / 57.3), 2)) AS REAL) as distance_mi
+FROM station1 s1 
+CROSS JOIN station2 s2
