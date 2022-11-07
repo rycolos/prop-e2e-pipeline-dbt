@@ -12,17 +12,3 @@ SELECT
 FROM {{ ref ('fact_psk_contact') }} p
 JOIN {{ ref ('fact_logbook_contact') }}l 
 ON p.receiver_callsign = l.receiver_callsign
-
--- SELECT
--- 	psk_rxtime_utc,
--- 	log_rxtime_utc,
--- 	p.comm_mode,
--- 	psk_frequency,
--- 	log_frequency,
--- 	sender_callsign,
--- 	receiver_callsign,
--- 	psk_snr,
--- 	log_snr_sent,
--- 	log_snr_rcvd,
--- 	{{ station_distance('sender_callsign', 'receiver_callsign') }} as distance_mi
--- FROM joined_data
