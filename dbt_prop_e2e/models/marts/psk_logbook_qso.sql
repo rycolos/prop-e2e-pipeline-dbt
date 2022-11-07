@@ -8,7 +8,8 @@ SELECT
 	p.receiver_callsign,
 	p.snr as psk_snr,
 	l.rst_sent as log_snr_sent,
-	l.rst_rcvd as log_snr_rcvd
+	l.rst_rcvd as log_snr_rcvd,
+	{{ station_distance('p.sender_callsign', 'p.receiver_callsign') }} as distance_mi
 FROM {{ ref ('fact_psk_contact') }} p
 JOIN {{ ref ('fact_logbook_contact') }}l 
 ON p.receiver_callsign = l.receiver_callsign
