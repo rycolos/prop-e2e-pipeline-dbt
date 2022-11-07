@@ -31,6 +31,6 @@ where callsign = '{{ station2 }}'
 {% set station2_lat = run_query(s2_lat_query) %}
 {% set station2_lon = run_query(s2_lon_query) %}
 
-CAST(SQRT(POW(69.1 * ({{ station1_lat }} -  {{ station2_lat }}), 2) + POW(69.1 * ({{ station2_lon }} - {{ station1_lon }}) * COS({{ station1_lat }} / 57.3), 2)) AS REAL)
+CAST(SQRT(POW(69.1 * ({{ station1_lat }}::REAL -  {{ station2_lat }}::REAL), 2) + POW(69.1 * ({{ station2_lon }}::REAL - {{ station1_lon }}::REAL) * COS({{ station1_lat }}::REAL / 57.3), 2)) AS REAL)
 
 {%- endmacro %}
