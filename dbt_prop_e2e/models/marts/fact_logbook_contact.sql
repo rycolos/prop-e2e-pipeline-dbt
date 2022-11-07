@@ -5,5 +5,6 @@ SELECT
     home_station_callsign,
     receiver_callsign,
     rst_sent,
-    rst_rcvd
+    rst_rcvd,
+    {{ station_distance('home_station_callsign', 'receiver_callsign') }} as distance_mi
 FROM {{ ref ('stg_logbook') }}
