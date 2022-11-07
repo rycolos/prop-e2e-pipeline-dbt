@@ -25,6 +25,6 @@ SELECT
 	receiver_callsign,
 	psk_snr,
 	log_snr_sent,
-	log_snr_rcvd,
+	log_snr_rcvd
 --	{{ station_distance('sender_callsign', 'receiver_callsign') }} as distance_mi
 FROM joined_data
