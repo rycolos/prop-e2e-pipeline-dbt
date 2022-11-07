@@ -8,7 +8,7 @@
 
 {% set s1_lat_query %}
 select psk_lat from {{ ref('dim_station') }}
-where callsign = {{ station1 }}
+where callsign = '{{ station1 }}'
 {% endset %}
 
 {% set s1_lon_query %}
