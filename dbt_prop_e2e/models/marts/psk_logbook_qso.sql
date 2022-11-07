@@ -1,7 +1,7 @@
 SELECT
 	p.rxtime_utc as psk_rxtime_utc,
 	l.rxtime_utc as log_rxtime_utc,
-	p.comm_mode as comm_mode
+	p.comm_mode as comm_mode,
 	p.frequency as psk_frequency,
 	l.frequency as log_frequency,
 	p.sender_callsign as sender_callsign,
