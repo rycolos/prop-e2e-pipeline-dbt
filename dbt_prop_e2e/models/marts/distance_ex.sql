@@ -19,6 +19,6 @@ station2 AS (
     WHERE callsign = 'NS4J'
 )
 
-SELECT s1_call, s1_lat, s2_lat FROM station1
+SELECT s1_call, s1_lat, s1_lon FROM station1
 UNION
 SELECT s2_call, s2_lat, s2_lon FROM station2
