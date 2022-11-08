@@ -1,5 +1,5 @@
-all: clean start create-base-tables create-views add-data
-all-no-load: clean start create-base-tables create-views
+all: clean start create-db create-base-tables add-data
+all-no-load: clean start create-base-tables
 
 clean: 
 	@echo "Stopping docker and removing container"
@@ -8,6 +8,10 @@ clean:
 start:
 	@echo "Starting docker container"
 	docker compose up -d
+
+create-db:
+	@echo "Creating databse"
+	docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -c 'create database prop-e2e-dbt'
 
 create-base-tables:
 	@echo "Creating base tables"
