@@ -1,4 +1,4 @@
-# **prop-e2e-pipeline-dbt**
+# prop-e2e-pipeline-dbt
 
 ## Objective
 This is an expansion of my [prop-e2e-pipeline project](https://github.com/rycolos/prop-e2e-pipeline), with the addition of [dbt](https://getdbt.com/) for transformation.
@@ -30,8 +30,14 @@ cat /home/kepler/prop-e2e-pipeline-dbt/sql/create_db.sql | docker exec -i prop-e
 #install packages (dbt_utils); Refers to packages.yml file in dbt root directory
 dbt deps
 
-#seed maidenhead grid to lat/lon lookup table in analysis schema
+#ingest data to analysis and analysis_raw schemas
 dbt seed --profiles-dir ./profiles
+
+#run all tests
+dbt test --profiles-dir ./profiles
+
+#run
+dbt run --full-refresh --profiles-dir ./profiles
 
 #documentation generate
 dbt docs generate
@@ -40,49 +46,18 @@ dbt docs generate
 #navigate to /target dir instead and run:
 python3 -m http.server
 
-#run all tests
-dbt test --profiles-dir ./profiles
-
-#run
-dbt run --full-refresh --profiles-dir ./profiles
-
 ```
 
 ## Data Sourcing and Ingestion
+Since this is a demo project, data is being ingested via dbt's [seeds](https://docs.getdbt.com/docs/build/seeds) functionality. 
+
+Static data - grid-to-lon-lat
+Dynamic data - pskreporter, logbook -- weekly 7d downloads, archive, and replace of seed files & dbt seeds full-refresh
 
 ## Tables and Views
-
 **analysis_raw.psk**
-
-Raw daily dump from https://pskreporter.info, filtered for my callsign (`KC1QBY`). Mild cleaning using `sed` is performed prior to ingestion to remove any interjected double-quotes from the free-text `receiverAntennaInformation` column.
-
 **analysis_raw.logbook**
-
 **analysis.stg_psk**
-
-Pre-analysis table with data types updated, irrelevant columns removed, columns renamed for clarity, and an auto-incrementing `id` column added. Three derived data colums are added: (1) sender/receiver latitude and (2) sender/receiver longitude are populated via a daily python scripts that convert maidenhead grid locator to lat/lon and (3) station-to-station distance is populated via a daily sql script.
-
 **analysis.stg_logbook**
-
 **analysis.received**
-
-Filtered view on `pskreporter_staged` to only show signals received at my station.
-
 **analysis.received_by**
-
-Filtered view on `pskreporter_staged` to only show signals of mine that have been received by other stations.
-
-## Example Analysis Queries
-
-**Median signal-to-noise ratio**
-```
-SELECT PERCENTILE_CONT(.5) WITHIN GROUP(ORDER BY snr) FROM received
-SELECT PERCENTILE_CONT(.5) WITHIN GROUP(ORDER BY snr) FROM received_by
-```
-
-**Mapping of received_by stations**
-```
-SELECT receiver_lat as lat, receiver_lon as lon FROM received_by
-```
-Visualized with plotly and pandas:
-<img src="https://i.imgur.com/z8cbSwe.png">
