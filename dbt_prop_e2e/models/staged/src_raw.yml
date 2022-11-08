@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: source
+    database: prop-e2e-dbt
+    schema: analysis_raw
+    tables:
+      - name: raw_psk
+        columns:
+          - name: sendercallsign
+            tests:
+              - not_null
+          - name: receivercallsign
+            tests:
+              - not_null
+      - name: raw_logbook
+        columns:
+          - name: call
+            tests:
+              - not_null
+          - name: station_callsign
+            tests:
+              - not_null
