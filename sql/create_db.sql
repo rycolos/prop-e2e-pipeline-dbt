@@ -1,1 +1,1 @@
-create database prop-e2e-dbt
+create database "prop-e2e-dbt"
