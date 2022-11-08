@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CALLSIGN="KC1QBY"
-DATADIR="/home/kepler/prop-e2e-pipeline/postgres_data/source_data"
+DATADIR="/home/kepler/prop-e2e-pipeline-dbt/postgres_data/source_data"
 DOCKERDATADIR="/var/lib/postgresql/data/source_data"
 DB="prop-e2e"
 USER="postgres"

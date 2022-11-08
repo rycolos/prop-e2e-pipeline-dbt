@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATADIR="/home/kepler/prop-e2e-pipeline/postgres_data/source_data"
+DATADIR="/home/kepler/prop-e2e-pipeline-dbt/postgres_data/source_data"
 DOCKERDATADIR="/var/lib/postgresql/data/source_data"
 SQLDIR="/home/kepler/prop-e2e-pipeline-dbt/sql"
 SCRIPTDIR="/home/kepler/prop-e2e-pipeline-dbt/scripts"
