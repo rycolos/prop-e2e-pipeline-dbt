@@ -1,6 +1,12 @@
 # **prop-e2e-pipeline-dbt**
 
 ```
+#install python requirements
+dbt-core, dbt-postgres, pyyaml, psycopg2, pandas
+
+#install packages (dbt_utils)
+dbt deps
+
 # seed maidenhead grid to lat/lon lookup table in analysis schema
 dbt seed --profiles-dir ./profiles
 
@@ -11,7 +17,7 @@ dbt docs generate
 #navigate to /target dir instead and run:
 python3 -m http.server
 
-#run tests
+#run all tests
 dbt test --profiles-dir ./profiles
 
 #run
