@@ -1,5 +1,6 @@
-import os, pandas as pd, re, sys
+import os, re, sys
 from datetime import date
+import pandas as pd
 
 #modified from https://github.com/bjorgan/adif_parser
 #designed to work only with QRZ.com exports

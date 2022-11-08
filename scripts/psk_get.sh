@@ -1,11 +1,7 @@
 #!/bin/bash
 
 CALLSIGN="KC1QBY"
-DATADIR="/home/kepler/prop-e2e-pipeline-dbt/postgres_data/source_data"
-DOCKERDATADIR="/var/lib/postgresql/data/source_data"
-DB="prop-e2e"
-USER="postgres"
-TABLENAME="raw.psk"
+DATADIR="/home/kepler/prop-e2e-pipeline-dbt/source_data"
 
 mkdir -p "$DATADIR"
 
@@ -21,13 +17,4 @@ rm "$DATADIR"/temp.zip
 echo "Cleaning data..."
 sed -i  's/\([^,]\)"\([^,]\)/\1\2/g' "$DATADIR"/$(date +%Y-%m-%d)_psk.csv
 
-#APPEND TO RAW DB
-echo "Appending to DB..."
-docker exec -i prop-e2e-pipeline-postgres-1 psql -d $DB -U $USER --command="CREATE TEMP TABLE tmp_table ON COMMIT DROP AS SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM $TABLENAME; \
-COPY tmp_table \
-FROM '$DOCKERDATADIR/$(date +%Y-%m-%d)_psk.csv' \
-WITH (FORMAT CSV, HEADER, DELIMITER ','); \
-INSERT INTO $TABLENAME (sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode) \
-SELECT sNR, mode, mhz, rxTime, senderdxcc, flowstartseconds, senderCallsign, senderLocator, receiverCallsign, receiverLocator, receiverAntennaInformation, senderDXCCADIF, submode FROM tmp_table \
-ON CONFLICT DO NOTHING;"
 

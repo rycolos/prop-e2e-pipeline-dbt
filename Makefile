@@ -22,5 +22,5 @@ dbt-run:
 	dbt run --project-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
 
 drop:
-	@echo "Dropping tables"
+	@echo "Dropping all tables"
 	cat /home/kepler/prop-e2e-pipeline-dbt/sql/drop_all_tables.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -d prop-e2e-dbt
