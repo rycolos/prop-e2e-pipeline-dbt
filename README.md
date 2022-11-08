@@ -11,18 +11,26 @@ As an amateur radio operator, I am frequently experimenting with antennas and ne
 ## Tooling
 1. PostgreSQL
 2. Docker, Docker Compose
-3. Python 3
+3. Python3
 4. dbt
 
 ## Setup
 ```
-#install python requirements
-dbt-core, dbt-postgres, pyyaml, psycopg2, pandas
+#install docker, docker compose, python3
 
-#install packages (dbt_utils)
+#install dbt
+pip3 install dbt-core
+pip3 install dbt-postgres
+cd /home/kepler/prop-e2e-pipeline-dbt && dbt init
+
+#start postgres and create database, if necessary (aka make clean && make start && make create-db
+docker compose up -d
+cat /home/kepler/prop-e2e-pipeline-dbt/sql/create_db.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres
+
+#install packages (dbt_utils); Refers to packages.yml file in dbt root directory
 dbt deps
 
-# seed maidenhead grid to lat/lon lookup table in analysis schema
+#seed maidenhead grid to lat/lon lookup table in analysis schema
 dbt seed --profiles-dir ./profiles
 
 #documentation generate
