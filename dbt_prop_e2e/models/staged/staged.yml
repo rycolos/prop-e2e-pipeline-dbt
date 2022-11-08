@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: stg_psk
+    description: "Staged implementation of raw.psk data"
+    columns:
+      - name: id
+        description: "Surrogate primary key based on rxtime_utc, sender_callsign, and receiver_callsign."
+        tests:
+          - unique
+          - not_null
+      - name: rxtime_utc
+        description: "Time in UTC that station was heard"
+      - name: comm_mode
+        description: "Communication mode"
+      - name: frequency
+        description: "Communication frequency"
+      - name: sender_callsign
+        description: "Callsign of sending station"
+        tests:
+          - not_null
+      - name: sender_locator
+        description: "Maidenhead grid locator of sending station"
+      - name: sender_dxcc
+        description: "DXCC entity (aka country) of sending station"
+      - name: receiver_callsign
+        description: "Callsign of receiving station"
+        tests:
+          - not_null
+      - name: receiver_locator
+        description: "Maidenhead grid locator of receiving station"
+      - name: receiver_antenna_info
+        description: "Ingested from decoding software (FLDIGI, WSJT-X, etc) and should not necessarily be trusted as up to date"
+      - name: snr
+        description: "Signal-to-noise ratio from the perspective of the receiving station"
+  
+  - name: stg_logbook
+    description: "Staged implementation of raw.logbook data"
+    columns:
+      - name: id
+        description: "Surrogate primary key based on rxtime_utc and receiver_callsign"
+        tests:
+          - unique
+          - not_null
+      - name: rxtime_utc
+        description: "Time in UTC that contact concluded"
+      - name: comm_mode
+        description: "Communication mode"
+      - name: frequency
+        description: "Communication frequency"
+      - name: home_station_callsign
+        description: "Callsign of home stationt"
+        tests:
+          - not_null
+      - name: home_station_locator
+        description: "Maidenhead grid locator of home station"
+      - name: home_station_country
+        description: "Country of home station"
+      - name: receiver_callsign
+        description: "Callsign of receiving station"
+        tests:
+          - not_null
+      - name: receiver_locator
+        description: "Maidenhead grid locator of receiving station"
+      - name: receiver_country
+        description: "Country of receiving station"
+      - name: rst_rcvd
+        description: "Readability, Strength, and Tone measure of home station's signal. Will be represeted as an SNR value for digital communication modes."
+      - name: rst_sent
+        description: "Readability, Strength, and Tone measure of receiving station's signal. Will be represeted as an SNR value for digital communication modes."
+      - name: tx_pwr
+        description: "Logged transmit power (manually added to logbook)"
+      - name: app_qrzlog_logid
+        description: "Unique id from qrz.com logbook"
+        tests:
+          - unique
+      - name: qrzcom_qso_upload_date
+        description: "Upload date of logbook entry to qrz.com logbook"
