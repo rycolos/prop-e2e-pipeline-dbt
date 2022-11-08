@@ -1,7 +1,7 @@
 import csv
 
 '''
-used to generate a static list of 32,400 4-digit maidenhead gridsquares and their lat/lon conversions
+used to generate a static list of 32,400 4-digit maidenhead gridsquares and their lon/lat conversions
 and dump to a csv file for upload to db
 '''
 
@@ -64,28 +64,26 @@ def to_location(grid):
         lat += (ord(grid[5]) - Oa) * 2.5 / 60
     return lat, lon
 
-def lat_lon_gen(fin_list):
-    fin_lat_list = []
-    fin_lon_list = []
+def lon_lat_gen(fin_list):
+    fin_geo_list = []
     
     for i in range(len(fin_list)):
         lat, lon = to_location(fin_list[i])
-        fin_lat_list.append(lat)
-        fin_lon_list.append(lon)
-    
-    return(fin_lat_list, fin_lon_list)
+        fin_geo_list.append(f'({lon},{lat})')
+
+    return(fin_geo_list)
 
 def main():
     grid_list = grid_gen()
-    final_lat_list, final_lon_list = lat_lon_gen(grid_list)
+    final_geo_list = lon_lat_gen(grid_list)
 
     print(f'{len(grid_list)} items written')
 
-    with open('gridsquare_lat_lon.csv', mode='w') as csv_file:
+    with open('gridsquare_lon_lat.csv', mode='w') as csv_file:
         writer = csv.writer(csv_file)
-        headers = ['grid', 'lat', 'lon']
+        headers = ['grid', 'lon_lat']
         writer.writerow(headers)
-        writer.writerows(zip(grid_list, final_lat_list, final_lon_list))    
+        writer.writerows(zip(grid_list, final_geo_list))    
 
 if __name__ == '__main__':
     main()
