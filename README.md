@@ -8,6 +8,9 @@ As an amateur radio operator, I am frequently experimenting with antennas and ne
 ## High-level data flow
 <img src="https://i.imgur.com/RBmN2Y7.png" width="800">
 
+## DAG
+<img src="https://i.imgur.com/zQEi61h.png" width="800">
+
 ## Tooling
 1. PostgreSQL
 2. Docker, Docker Compose
