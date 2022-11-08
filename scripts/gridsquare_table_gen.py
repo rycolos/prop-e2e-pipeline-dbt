@@ -69,7 +69,7 @@ def lon_lat_gen(fin_list):
     
     for i in range(len(fin_list)):
         lat, lon = to_location(fin_list[i])
-        fin_geo_list.append(f'({lon},{lat})')
+        fin_geo_list.append(f'({lon}, {lat})')
 
     return(fin_geo_list)
 
