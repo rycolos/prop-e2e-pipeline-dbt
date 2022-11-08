@@ -23,4 +23,4 @@ add-data:
 
 drop:
 	@echo "Dropping tables"
-	cat /home/kepler/prop-e2e-pipeline-dbt/sql/drop_all_tables.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -d prop-e2e
+	cat /home/kepler/prop-e2e-pipeline-dbt/sql/drop_all_tables.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -d prop-e2e-dbt
