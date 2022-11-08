@@ -11,7 +11,7 @@ start:
 
 create-db:
 	@echo "Creating databse"
-	docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -c 'create database prop-e2e-dbt'
+	cat /home/kepler/prop-e2e-pipeline-dbt/sql/create_db.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres
 
 create-base-tables:
 	@echo "Creating base tables"
