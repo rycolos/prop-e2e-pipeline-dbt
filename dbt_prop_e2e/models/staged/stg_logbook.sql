@@ -24,7 +24,6 @@ pre_transform AS (
 
 transformed as (
     select
-      {{ dbt_utils.surrogate_key(['rxtime_utc', 'sendercallsign', 'receivercallsign']) }} as id,
       to_timestamp(cast(extract(epoch from(cast(qso_date as date) + make_time(cast(substring(time_off, 1, 2) as int), cast(substring(time_off, 3, 2) as int), 00))) as double precision)) as rxtime_utc,
       comm_mode,
       frequency,
