@@ -64,8 +64,7 @@ transformed AS (
         logb_locator,
         psk_country,
         logb_country,
-        g.lat AS psk_lat,
-        g.lon AS psk_lon
+        CAST(g.lon_lat AS point) as psk_lon_lat
     FROM final_merge AS s
     JOIN {{ ref ('gridsquare_lon_lat') }} AS g
     ON LEFT(s.psk_locator, 4) = g.grid
