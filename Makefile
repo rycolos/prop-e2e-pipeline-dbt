@@ -1,5 +1,5 @@
-all: clean start create-db create-base-tables add-data
-all-no-load: clean start create-base-tables
+all: clean start create-db create-base-tables add-data dbt-seed dbt-run
+all-no-load: clean start create-db create-base-tables
 
 clean: 
 	@echo "Stopping docker and removing container"
@@ -24,6 +24,14 @@ add-data:
 	
 	@echo "Populating existing logbook data"
 	sudo python3 /home/kepler/prop-e2e-pipeline-dbt/scripts/logb_load_all.py
+
+dbt-seed:
+	@echo "Populating dbt seeds"
+	dbt seed --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
+
+dbt-run:
+	@echo "Initializing dbt and running models"
+	dbt run --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
 
 drop:
 	@echo "Dropping tables"
