@@ -12,7 +12,7 @@ start:
 create-base-tables:
 	@echo "Creating base tables"
 	sleep 2 
-	cat /home/kepler/prop-e2e-pipeline-dbt/sql/create_raw.sql | docker exec -i prop-e2e-pipeline-postgres-1 psql -U postgres -d prop-e2e-dbt
+	cat /home/kepler/prop-e2e-pipeline-dbt/sql/create_raw.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -d prop-e2e-dbt
 
 add-data: 
 	@echo "Populating existing pskreporter data"
@@ -23,4 +23,4 @@ add-data:
 
 drop:
 	@echo "Dropping tables"
-	cat /home/kepler/prop-e2e-pipeline-dbt/sql/drop_all_tables.sql | docker exec -i prop-e2e-pipeline-postgres-1 psql -U postgres -d prop-e2e
+	cat /home/kepler/prop-e2e-pipeline-dbt/sql/drop_all_tables.sql | docker exec -i prop-e2e-pipeline-dbt-postgres-1 psql -U postgres -d prop-e2e
