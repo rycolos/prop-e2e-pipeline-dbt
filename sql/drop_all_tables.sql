@@ -1,2 +1,2 @@
 DROP TABLE raw.psk CASCADE
-DROP TABLE raw.logbook CASCASE
+DROP TABLE raw.logbook CASCADE
