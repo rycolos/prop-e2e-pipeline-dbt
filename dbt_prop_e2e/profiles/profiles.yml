@@ -1,5 +1,6 @@
 dbt_prop_e2e:
     target: local
+    
     outputs:
       local:
         type: postgres
