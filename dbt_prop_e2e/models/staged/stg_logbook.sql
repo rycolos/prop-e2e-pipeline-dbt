@@ -1,5 +1,5 @@
  with source as (
-    select * from {{ source('source', 'logbook') }}
+    select * from {{ source('analysis_raw', 'logbook') }}
  ),
 
 pre_transform AS (
