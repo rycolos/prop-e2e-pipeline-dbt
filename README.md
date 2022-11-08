@@ -58,16 +58,3 @@ Data is sourced from three locations for this project:
 1. pskreporter.info -- an automated reception recorder for a variety of amateur radio digital communication modes
 2. qrz.com -- the primary location of my logbook for all logged radio contacts (aka "QSOs" in radio terminology)
 3. a static grid-to-geo lookup table -- rather than lon/lat, amateur radio uses [maidenhead grid locators](https://en.wikipedia.org/wiki/Maidenhead_Locator_System) for succinct location descriptions. To make for easier geographic analysis, I've derived a lookup table converting 4-digit grid locators to lon/lat. 
-
-## Tables and Views
-**analysis_raw.psk**
-
-**analysis_raw.logbook**
-
-**analysis.stg_psk**
-
-**analysis.stg_logbook**
-
-**analysis.received**
-
-**analysis.received_by**
