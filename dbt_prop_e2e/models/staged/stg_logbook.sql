@@ -2,7 +2,7 @@
     select * from {{ source('source', 'logbook') }}
  ),
 
-WITH pre_transform AS (
+pre_transform AS (
 	SELECT
 		cast(qso_date AS text),
 		cast(time_off AS text),
