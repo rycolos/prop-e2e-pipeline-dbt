@@ -1,0 +1,1 @@
+create database prop-e2e-dbt
