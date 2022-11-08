@@ -27,11 +27,11 @@ add-data:
 
 dbt-seed:
 	@echo "Populating dbt seeds"
-	dbt seed --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
+	dbt seed --project-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/ --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
 
 dbt-run:
 	@echo "Initializing dbt and running models"
-	dbt run --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
+	dbt run --project-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e --profiles-dir /home/kepler/prop-e2e-pipeline-dbt/dbt_prop_e2e/profiles
 
 drop:
 	@echo "Dropping tables"
