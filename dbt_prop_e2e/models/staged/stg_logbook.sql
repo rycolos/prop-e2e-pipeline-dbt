@@ -43,7 +43,7 @@ transformed as (
 
 final as (
     select
-      {{ dbt_utils.surrogate_key(['rxtime_utc', 'sendercallsign', 'receivercallsign']) }} as id,
+      {{ dbt_utils.surrogate_key(['rxtime_utc', 'home_station_callsign', 'receiver_callsign']) }} as id,
       rxtime_utc,
       comm_mode,
       frequency,
