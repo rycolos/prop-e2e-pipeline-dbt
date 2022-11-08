@@ -3,9 +3,9 @@ version: 2
 sources:
   - name: raw
     database: prop-e2e-dbt
-    schema: raw
+    schema: analysis_raw
     tables:
-      - name: psk
+      - name: raw_psk
         columns:
           - name: sendercallsign
             tests:
@@ -13,7 +13,7 @@ sources:
           - name: receivercallsign
             tests:
               - not_null
-      - name: logbook
+      - name: raw_logbook
         columns:
           - name: call
             tests:
