@@ -1,5 +1,6 @@
 all: clean start create-db create-base-tables add-data dbt-seed dbt-run
 all-no-load: clean start create-db create-base-tables
+remove: drop clean
 
 clean: 
 	@echo "Stopping docker and removing container"
