@@ -6,9 +6,6 @@ models:
     columns:
       - name: psk_lon_lat
         description: "Lon/lat derived from psk mMidenhead locator"
-      - name: callsign
-        tests:
-          - callsign_present
   - name: fact_logbook_contact
     description: "Fact table for qrz.com logbook contacts"
   - name: fact_psk_contact
