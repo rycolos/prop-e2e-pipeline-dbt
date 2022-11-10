@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_station
+    description: "Dimension table for station, primary key = callsign"
+    columns:
+      - name: psk_lon_lat
+        description: "Lon/lat derived from psk mMidenhead locator"
+  - name: fact_logbook_contact
+    description: "Fact table for qrz.com logbook contacts"
+  - name: fact_psk_contact
+    description: "Fact table for pskreporter.info reception reports"
+  - name: psk_logbook_qso
+    description: "Joined table for qrz contacts and psk reception reports"
+  - name: psk_received_by
+    description: "Psk data filtered for stations who heard home station"
+  - name: psk_received
+    description: "Psk data filtered for stations heard by home station"
