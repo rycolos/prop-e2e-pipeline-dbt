@@ -36,7 +36,7 @@ dbt deps
 #ingest data to analysis and analysis_raw schemas
 dbt seed --profiles-dir ./profiles
 
-#run all tests
+#run all tests, includes custom singular test 'callsign-present'
 dbt test --profiles-dir ./profiles
 
 #run
