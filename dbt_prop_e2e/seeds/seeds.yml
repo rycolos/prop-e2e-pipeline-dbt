@@ -14,10 +14,12 @@ seeds:
   - name: psk
     description: "Raw receiption reports for my home station, sourced from pskreporter.info"
     columns:
-      - name: "senderCallsign"
+      - name: senderCallsign
+        quote: true
         tests:
           - not_null
-      - name: "receiverCallsign"
+      - name: receiverCallsign
+        quote: true
         tests:
           - not_null
 
