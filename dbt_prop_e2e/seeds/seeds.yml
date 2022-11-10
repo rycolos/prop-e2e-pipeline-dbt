@@ -1,0 +1,30 @@
+version: 2
+
+seeds:
+  - name: logbook
+    description: "Raw logbook for my home station, sourced from qrz.com"
+    columns:
+      - name: call
+        tests:
+          - not_null
+      - name: station_callsign
+        tests:
+          - not_null
+
+  - name: psk
+    description: "Raw receiption reports for my home station, sourced from pskreporter.info"
+    columns:
+      - name: "senderCallsign"
+        tests:
+          - not_null
+      - name: "receiverCallsign"
+        tests:
+          - not_null
+
+  - name: gridsquare_lon_lat
+    description: "Lookup table between 4-digit Maidenhead grid locators and lon/lat"
+    columns:
+      - name: grid
+        tests:
+          - not_null
+          - unique
