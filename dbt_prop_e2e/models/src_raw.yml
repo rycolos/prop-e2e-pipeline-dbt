@@ -7,10 +7,10 @@ sources:
     tables:
       - name: psk
         columns:
-          - name: sendercallsign
+          - name: "senderCallsign"
             tests:
               - not_null
-          - name: receivercallsign
+          - name: "receiverCallsign"
             tests:
               - not_null
       - name: logbook
