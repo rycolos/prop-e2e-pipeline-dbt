@@ -1,4 +1,4 @@
---return true if callsign is present in ref('stg_psk') (sender_callsign OR receiver_callsign) 
+-- returns no rows if callsign is present in ref('stg_psk') (sender_callsign OR receiver_callsign) 
 -- or ref('stg_logbook') (home_station_callsign or receiver_callsign)
 
 with logbook as (

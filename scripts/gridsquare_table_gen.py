@@ -7,7 +7,7 @@ and dump to a csv file for upload to db
 
 def grid_gen():
     '''
-    generate letletnumnum list 
+    generate alphalaphanumnum list 
     where A-R can appear in the first two places and 0-9 can appear in last two places
     e.g., AA00, AA01...AA99, AB00, AB01...RR99
     '''
