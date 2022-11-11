@@ -2,7 +2,7 @@ with source as (
    select * from {{ source('analysis_raw', 'psk') }}
 ),
 
-pre_transform as (
+transformed as (
 	select
 		"sNR" as snr,
 		mode,
@@ -20,9 +20,9 @@ pre_transform as (
 	from source
 ),
 
-transformed as (
-	SELECT
-      {{ dbt_utils.surrogate_key(['rxtime', 'sendercallsign', 'receivercallsign']) }} as id,
+final as (
+	select
+		{{ dbt_utils.surrogate_key(['rxtime', 'sendercallsign', 'receivercallsign']) }} as id,
 		rxtime as rxtime_utc,
 		mode as comm_mode,
 		cast(MHz as DOUBLE PRECISION) as frequency,
@@ -33,7 +33,7 @@ transformed as (
 		receiverLocator as receiver_locator,
 		receiverAntennaInformation as receiver_antenna_info,
 		cast(sNR as int) as snr
-	from pre_transform
+	from transformed
 )
 
-select * from transformed
+select * from final

@@ -1,2 +1,10 @@
-SELECT * FROM {{ ref ('stg_psk') }}
-WHERE sender_callsign = 'KC1QBY'
+with source as (
+   select * from {{ ref ('stg_psk') }}
+),
+
+final as (
+    select * from source
+    where sender_callsign = 'KC1QBY'
+)
+
+select * from final

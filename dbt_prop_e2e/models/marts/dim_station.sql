@@ -1,74 +1,85 @@
-WITH psk_pre_merge AS (
-	SELECT 
-		DISTINCT sender_callsign AS callsign,
-		sender_locator AS psk_locator,
-		sender_dxcc AS psk_country,
-		NULL AS antenna
-	FROM {{ ref ('stg_psk') }}
+with psk as (
+	select * from {{ ref ('stg_psk') }}
+),
 
-	UNION
+logbook as (
+	select * from {{ ref ('stg_logbook') }}
+),
 
-	SELECT 
-		DISTINCT receiver_callsign, 
+gridsquare_lon_lat as (
+	select * from {{ ref ('gridsquare_lon_lat') }}
+),
+
+psk_pre_merge as (
+	select 
+		distinct sender_callsign as callsign,
+		sender_locator as psk_locator,
+		sender_dxcc as psk_country,
+		null as antenna
+	from psk
+
+	union
+
+	select 
+		distinct receiver_callsign, 
 		receiver_locator,
-		NULL AS dxcc,
-		receiver_antenna_info AS antenna
-	FROM {{ ref ('stg_psk') }}
-	ORDER BY callsign ASC
+		null as dxcc,
+		receiver_antenna_info as antenna
+	from psk
+	order by callsign asc
 ),
 
-psk_merge AS (
-	SELECT 
-		DISTINCT callsign,
+psk_merge as (
+	select 
+		distinct callsign,
 		psk_locator,
-		MAX(psk_country) AS psk_country,
-		MAX(antenna) AS antenna_info
-	FROM psk_pre_merge
-	GROUP BY callsign, psk_locator
+		max(psk_country) as psk_country,
+		max(antenna) as antenna_info
+	from psk_pre_merge
+	group by callsign, psk_locator
 ),
 
-logbook_merge AS (
-	SELECT 
-		DISTINCT home_station_callsign AS callsign,
-		home_station_locator AS logb_locator,
-		home_station_country AS logb_country	
-	FROM {{ ref ('stg_logbook') }}
-
-	UNION
+logbook_merge as (
+	select 
+		distinct home_station_callsign as callsign,
+		home_station_locator as logb_locator,
+		home_station_country as logb_country	
+	from logbook
+	union
 	
-	SELECT 
-		DISTINCT receiver_callsign,
+	select 
+		distinct receiver_callsign,
 		receiver_locator,
 		receiver_country	
-	FROM {{ ref ('stg_logbook') }}
+	from logbook
 ),
 
-final_merge AS (
-    SELECT
+final_merge as (
+    select
         p.callsign,
         p.psk_locator,
         l.logb_locator,
         p.psk_country,
         l.logb_country,
         antenna_info
-    FROM psk_merge AS p
-    FULL OUTER JOIN logbook_merge AS l
-    ON p.callsign = l.callsign
-    ORDER BY l.logb_locator
+    from psk_merge as p
+    full outer join logbook_merge as l
+    on p.callsign = l.callsign
+    order by l.logb_locator
 ),
 
-transformed AS ( 
-    SELECT 
+final as ( 
+    select 
         {{ dbt_utils.surrogate_key(['callsign', 'psk_locator']) }} as id,
 		callsign,
         psk_locator,
         logb_locator,
         psk_country,
         logb_country,
-        CAST(g.lon_lat AS point) as psk_lon_lat
-    FROM final_merge AS s
-    JOIN {{ ref ('gridsquare_lon_lat') }} AS g
-    ON LEFT(s.psk_locator, 4) = g.grid
+        cast(g.lon_lat as point) as psk_lon_lat
+    from final_merge as s
+    join gridsquare_lon_lat as g
+    on left(s.psk_locator, 4) = g.grid
 )
 
-SELECT * FROM transformed
+select * from final
