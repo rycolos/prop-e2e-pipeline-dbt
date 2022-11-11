@@ -5,6 +5,11 @@ This is an expansion of my [prop-e2e-pipeline project](https://github.com/rycolo
 
 As an amateur radio operator (KC1QBY, you'll me me mostly on 20m-10m on FT8 and JS8Call), I am frequently experimenting with antennas and new communication modes. I would like to begin quantifying these experiments to analyze how different variables affect my signal propagation. This project serves a dual purpose of assisting in my continued learning about data and analytics engineering. 
 
+**Research questions include:**
+1. How does reception and contact distance corrolate to transmit power?
+2. How is reception distance bucketed depending on the type of antenna I'm using?
+3. How does frequency corrolate to distance?
+
 ## High-level data flow
 <img src="https://raw.githubusercontent.com/rycolos/prop-e2e-pipeline-dbt/main/pipeline.png" width="900">
 
@@ -22,6 +27,8 @@ There is an important distinction between these sources. Pskreporter provides in
 Capturing data from both of these sources is important, as it's far easier to receive/be received by the vagaries of atmospheric conditions than to make a true contact. With psk data, I can see where my signal is going and what I'm receiving, but this doesn't adequately capture the true performance of my station that's required for a back-and-forth exchange. 
 
 A third source is also present -- a static grid-to-geo lookup table. Rather than lon/lat, amateur radio uses [maidenhead grid locators](https://en.wikipedia.org/wiki/Maidenhead_Locator_System) for succinct location descriptions. To make for easier geographic analysis, I've derived a lookup table converting 4-digit grid locators to lon/lat (see scripts/gridsquare_table_gen.py). 
+
+In the future, additional data could be included in this project, like further callsign information from the FCC's license data base and solar propagation information.
 
 **Data is modeled as follows:**
 
