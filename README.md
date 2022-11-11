@@ -3,7 +3,7 @@
 ## Objective
 This is an expansion of my [prop-e2e-pipeline project](https://github.com/rycolos/prop-e2e-pipeline), with the addition of [dbt](https://getdbt.com/) for transformation.
 
-As an amateur radio operator (KC1QBY, you'll me me mostly on 20m-10m on FT8 and JS8Call), I am frequently experimenting with antennas and new communication modes. I would like to begin quantifying these experiments to analyze how different variables affect my signal propagation. This project serves a dual purpose of assisting in my continued learning about data and analytics engineering. 
+As an amateur radio operator (KC1QBY, you'll find me me mostly on 20m-10m on FT8 and JS8Call), I am frequently experimenting with antennas and new communication modes. I would like to begin quantifying these experiments to analyze how different variables affect my signal propagation. This project serves a dual purpose of assisting in my continued learning about data and analytics engineering. 
 
 **Research questions include:**
 1. How does reception and contact distance corrolate to transmit power?
