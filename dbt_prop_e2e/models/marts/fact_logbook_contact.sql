@@ -1,4 +1,5 @@
 SELECT 
+    id,
     rxtime_utc,
     comm_mode,
     frequency,
