@@ -11,9 +11,10 @@ As an amateur radio operator, I am frequently experimenting with antennas and ne
 ## DAG
 <img src="https://i.imgur.com/zQEi61h.png" width="900">
 
-## Dependencies
-1. Docker, Docker Compose
+## Requirements
+1. Docker Compose
 2. Python3
+3. dbt-core, dbt-postgres
 
 ## Setup
 In my setup, data is being stored locally on a headless home server and maintained via SSH on another local machine.
@@ -40,7 +41,7 @@ Refers to packages.yml file in dbt root directory
 dbt deps
 ```
 
-### Ingest data to analysis and analysis_raw schemas
+### Ingest seed data to analysis and analysis_raw schemas
 Three files are present in the dbt `seeds` directory: `gridsquare_lon_lat.csv`, `raw/psk.csv`, and `raw/logbook.csv`.
 ```
 dbt seed --profiles-dir ./profiles
@@ -73,3 +74,5 @@ Data is sourced from three locations for this project:
 1. pskreporter.info -- an automated reception recorder for a variety of amateur radio digital communication modes
 2. qrz.com -- the primary location of my logbook for all logged radio contacts (aka "QSOs" in radio terminology)
 3. a static grid-to-geo lookup table -- rather than lon/lat, amateur radio uses [maidenhead grid locators](https://en.wikipedia.org/wiki/Maidenhead_Locator_System) for succinct location descriptions. To make for easier geographic analysis, I've derived a lookup table converting 4-digit grid locators to lon/lat. 
+
+Scripts to retreive and process this data are available in the `scripts` directory. 
