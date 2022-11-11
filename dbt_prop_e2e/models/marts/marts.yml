@@ -4,6 +4,11 @@ models:
   - name: dim_station
     description: "Dimension table for station"
     columns:
+      - name: id
+        description: "Surrogate primary key based on callsign and psk_locator"
+        tests:
+          - unique
+          - not_null
       - name: psk_lon_lat
         description: "Lon/lat derived from psk mMidenhead locator"
   - name: fact_logbook_contact

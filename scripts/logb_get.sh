@@ -2,7 +2,7 @@
 
 DATADIR="/home/kepler/prop-e2e-pipeline-dbt/source_data"
 SCRIPTDIR="/home/kepler/prop-e2e-pipeline-dbt/scripts"
-KEY="A02C-3B9A-CCCF-F366"
+KEY=$(cat .pass)
 SDATE=$(date +%Y-%m-%d -d "-7 days")
 EDATE=$(date +%Y-%m-%d)
 
