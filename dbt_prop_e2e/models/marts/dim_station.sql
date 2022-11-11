@@ -59,7 +59,7 @@ final_merge AS (
 
 transformed AS ( 
     SELECT 
-        {{ dbt_utils.surrogate_key(['callsign, 'psk_locator']) }} as id,
+        {{ dbt_utils.surrogate_key(['callsign', 'psk_locator']) }} as id,
 		callsign,
         psk_locator,
         logb_locator,
