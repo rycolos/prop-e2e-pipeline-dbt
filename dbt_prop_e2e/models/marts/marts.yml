@@ -2,14 +2,10 @@ version: 2
 
 models:
   - name: dim_station
-    description: "Dimension table for station, primary key = callsign"
+    description: "Dimension table for station"
     columns:
       - name: psk_lon_lat
         description: "Lon/lat derived from psk mMidenhead locator"
-      - name: callsign
-        tests:
-          - unique
-          - not_null
   - name: fact_logbook_contact
     description: "Fact table for qrz.com logbook contacts"
   - name: fact_psk_contact
@@ -20,3 +16,5 @@ models:
     description: "Psk data filtered for stations who heard home station"
   - name: psk_received
     description: "Psk data filtered for stations heard by home station"
+
+# note -- cannot have callsign be pk in dim_station because a callsign can be operated under from different locations, with different maidenhead grid squares
